@@ -1,13 +1,13 @@
 function submitForm() {
-    const form = document.getElementById('productForm');
-    const formData = new FormData(form);
-    console.log(formData)
+    event.preventDefault()
+    const name = document.getElementById('name')
+    const description = document.getElementById('description')
+    const price = document.getElementById('price')
     const product = {
-        name: formData.get('name'),
-        description: formData.get('description'),
-        price: formData.get('price')
+        name: name.value,
+        description: description.value,
+        price: price.value
     };
-    console.log(product)
     fetch('http://127.0.0.1:8000/products/', {
         method: 'POST',
         headers: {
@@ -43,3 +43,5 @@ function displayProducts(products) {
 }
 
 fetchProducts();
+const addForm = document.getElementById('productForm')
+addForm.addEventListener('submit', submitForm)
